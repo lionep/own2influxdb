@@ -1,0 +1,34 @@
+{
+  "ownServer": {
+    "host": "192.168.0.20",
+    "port": 20000
+  },
+  "sensors": [
+    {
+      "id": "1",
+      "name": "Temp.living",
+      "type": "temp"
+    },
+    {
+      "id": "2",
+      "name": "Temp.room",
+      "type": "temp"
+    },
+    {
+      "id": "3",
+      "name": "Temp.desk",
+      "type": "temp"
+    }
+  ],
+  "scanFrequency": 10000,
+  "influxdb": {
+    "host": "localhost",
+    "database": "telegraf",
+    "user": "username",
+    "password": "password",
+    "tags": {
+      "host": "my-host",
+      "dc": "my-dc"
+    }
+  }
+}

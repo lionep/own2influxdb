@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  node:
+    container_name: node_careathome
+    hostname: node_careathome
+    build: .
+    expose:
+      - "3000"
+    volumes:
+      - ./data:/usr/srv/app/data:rw
+    environment:
+      - NODE_ENV=production
+      - JWT_ISSUER=dev.careathome.12.lc
+    links:
+      - mongo:mongo
+    networks:
+      nginx_proxy:
+        ipv4_address: 172.28.0.30
+    restart: always
+
+  mongo:
+    container_name: mongo_careathome
+    hostname: mongno_careathome
+    image: mongo
+    volumes:
+      - ./mongo/:/data/db
+    networks:
+      nginx_proxy:
+        ipv4_address: 172.28.0.32
+    restart: always
+
+networks:
+  nginx_proxy:
+    external:
+      name: lionep_nginx_proxy
